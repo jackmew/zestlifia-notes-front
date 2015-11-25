@@ -11,7 +11,9 @@ angular.module('zestlifiaNote.noteStore', [])
       });
     },
     get: function(noteId) {
-      
+      return $http.get(apiUrl + '/notes/' + noteId).then(function(response) {
+        return response.data;
+      });
     },
     create: function(note) {
       

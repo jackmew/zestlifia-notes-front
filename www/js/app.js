@@ -27,7 +27,10 @@ app.controller('ListCtrl', function($scope, NoteStore) {
 });
 
 app.controller('EditCtrl', function($scope, $state, NoteStore) {
-  $scope.note = angular.copy(NoteStore.get($state.params.noteId));
+
+  NoteStore.get($state.params.noteId).then(function(note) {
+    $scope.note = note ;
+  });
 
   $scope.save = function() {
     NoteStore.update($scope.note);
