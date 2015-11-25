@@ -4,7 +4,11 @@ var app = angular.module('zestlifiaNote', ['ionic','zestlifiaNote.noteStore']);
 
 app.controller('ListCtrl', function($scope, NoteStore) {
   
-  $scope.notes = NoteStore.list() ;
+  // $scope.notes = NoteStore.list() ;
+  NoteStore.list().then(function(notes) {
+    $scope.notes = notes ;
+  });
+
   $scope.reordering = false ;
 
   $scope.remove = function(noteId) {

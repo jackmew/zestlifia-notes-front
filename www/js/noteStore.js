@@ -1,15 +1,17 @@
 angular.module('zestlifiaNote.noteStore', [])
-  .factory('NoteStore', function() {
+  .factory('NoteStore', function($http) {
 
-  var notes = angular.fromJson(window.localStorage['notes'] || '[]');
+  var apiUrl = "http://localhost:8200"
 
   return {
 
     list: function() {
-      return notes ;
+      return $http.get(apiUrl + '/notes/').then(function(response) {
+        return response.data;
+      });
     },
     get: function(noteId) {
-     
+      
     },
     create: function(note) {
       
