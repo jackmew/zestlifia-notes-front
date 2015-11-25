@@ -36,21 +36,19 @@ app.controller('EditCtrl', function($scope, $state, NoteStore) {
     NoteStore.update($scope.note).then(function() {
       $state.go("list");
     });
-    // NoteStore.update($scope.note);
-    // $state.go("list");
   };
 });
 
 app.controller('AddCtrl', function($scope, $state, NoteStore) {
   $scope.note = {
-    id: new Date().getTime().toString(),
     title: '',
     description: ''
   };
 
   $scope.save = function() {
-    NoteStore.create($scope.note);
-    $state.go("list");
+    NoteStore.create($scope.note).then(function() {
+      $state.go("list");
+    });
   };
 }) ;
 
