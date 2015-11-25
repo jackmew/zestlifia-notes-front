@@ -19,7 +19,7 @@ angular.module('zestlifiaNote.noteStore', [])
       
     },
     update: function(note) {
-      
+      return $http.put(apiUrl + '/notes/' + note.id, note);
     },
     move: function(note, fromIndex, toIndex) {
     	

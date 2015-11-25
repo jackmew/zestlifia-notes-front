@@ -33,9 +33,12 @@ app.controller('EditCtrl', function($scope, $state, NoteStore) {
   });
 
   $scope.save = function() {
-    NoteStore.update($scope.note);
-    $state.go("list");
-  }
+    NoteStore.update($scope.note).then(function() {
+      $state.go("list");
+    });
+    // NoteStore.update($scope.note);
+    // $state.go("list");
+  };
 });
 
 app.controller('AddCtrl', function($scope, $state, NoteStore) {
@@ -54,7 +57,8 @@ app.controller('AddCtrl', function($scope, $state, NoteStore) {
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('list', {
     url: '/list',
-    templateUrl: 'templates/list.html'
+    templateUrl: 'templates/list.html',
+    cache: false 
   });
   $stateProvider.state('edit', {
     url: '/edit/:noteId',
